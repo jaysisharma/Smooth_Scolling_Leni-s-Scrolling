@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lenis - Smooth Scrolling Library</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      @font-face {
+        font-family: Slussen;
+        src: url(/fonts/Slussen-Compressed-Black.woff2) format("woff2");
+        font-display: swap;
+        font-weight: 900;
+        font-stretch: compressed;
+      }
+      @font-face {
+        font-family: Slussen;
+        src: url(/fonts/Slussen-Expanded-Black.woff2) format("woff2");
+        font-display: swap;
+        font-weight: 900;
+        font-stretch: expanded;
+      }
+      @font-face {
+        font-family: Slussen;
+        src: url(/fonts/Slussen-Regular.woff2) format("woff2");
+        font-display: swap;
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: Slussen;
+        src: url(/fonts/Slussen-Bold.woff2) format("woff2");
+        font-display: swap;
+        font-weight: 700;
+      }
+
+      html {
+        scroll-behavior: initial;
+        overflow: hidden;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: Slussen;
+        font-size: 16px;
+        font-weight: 400;
+        background: #000;
+        color: #fff;
+      }
+
+      h2 {
+        font-size: 60px;
+        font-weight: 900;
+        line-height: 85%;
+        border-left: 3px solid #ff98a2;
+        padding: 25px;
+        margin: 0;
+      }
+
+      h2 span {
+        display: block;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-stretch: expanded;
+        color: #ff98a2;
+        line-height: 100%;
+      }
+
+      h2,
+      h3,
+      h4 {
+        text-transform: uppercase;
+      }
+
+      .container {
+        width: 95%;
+        margin: auto;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .col {
+        width: 50%;
+      }
+
+      #vertical {
+        height: 200vh;
+        width: 100vw;
+      }
+
+      .vertical__content {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .vertical__content .col_left {
+        height: 100%;
+      }
+
+      .vertical__content .col.col_right {
+        width: 40%;
+      }
+
+      .vertical__item:not(:last-child) {
+        margin-bottom: 240px;
+      }
+
+      #horizontal {
+        padding: 100px 0;
+      }
+
+      .horizontal__content {
+        display: flex;
+      }
+
+      .horizontal__item {
+        border: 1px solid #efefef;
+        padding: 200px 150px;
+      }
+      .horizontal__item:not(:last-child) {
+        margin-right: 50px;
+      }
+
+      .horizontal__num {
+        font-size: 80px;
+        font-weight: 900;
+        font-stretch: condensed;
+        color: #ff98a2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="vertical">
+      <div class="container">
+        <div class="vertical__content">
+          <div class="col col_left">
+            <h2 class="vertical__heading">
+              <span>About</span><span>Smooth</span><span>Scroll</span>
+            </h2>
+          </div>
+          <div class="col col_right">
+            <div class="vertical__item">
+              <h3>Smooth Scroll Lenis</h3>
+              <p>
+                Lenis is an open-source library built to standardize scroll
+                experiences and sauce up websites with butter-smooth navigation,
+                all while using the platform and keeping it accessible.
+              </p>
+            </div>
+            <div class="vertical__item">
+              <h3>Smooth Scroll Lenis</h3>
+              <p>
+                Lenis is an open-source library built to standardize scroll
+                experiences and sauce up websites with butter-smooth navigation,
+                all while using the platform and keeping it accessible.
+              </p>
+            </div>
+            <div class="vertical__item">
+              <h3>Smooth Scroll Lenis</h3>
+              <p>
+                Lenis is an open-source library built to standardize scroll
+                experiences and sauce up websites with butter-smooth navigation,
+                all while using the platform and keeping it accessible.
+              </p>
+            </div>
+            <div class="vertical__item">
+              <h3>Smooth Scroll Lenis</h3>
+              <p>
+                Lenis is an open-source library built to standardize scroll
+                experiences and sauce up websites with butter-smooth navigation,
+                all while using the platform and keeping it accessible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="horizontal">
+      <div class="container">
+        <div class="horizontal__content">
+          <div class="horizontal__item">
+            <div class="horizontal__num">1</div>
+          </div>
+          <div class="horizontal__item">
+            <div class="horizontal__num">2</div>
+          </div>
+          <div class="horizontal__item">
+            <div class="horizontal__num">3</div>
+          </div>
+          <div class="horizontal__item">
+            <div class="horizontal__num">4</div>
+          </div>
+          <div class="horizontal__item">
+            <div class="horizontal__num">5</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://assets.codepen.io/16327/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+    <script>
+      const lenis = new Lenis({
+        duration: 6,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        ScrollTrigger.update();
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      const section_1 = document.getElementById("vertical");
+      const col_left = document.querySelector(".col_left");
+      const timeln = gsap.timeline({ paused: true });
+
+      timeln.fromTo(
+        col_left,
+        { y: 0 },
+        { y: "170vh", duration: 1, ease: "none" },
+        0
+      );
+
+      const scroll_1 = ScrollTrigger.create({
+        animation: timeln,
+        trigger: section_1,
+        start: "top top",
+        end: "bottom center",
+        scrub: true,
+      });
+
+      const section_2 = document.getElementById("horizontal");
+      let box_items = gsap.utils.toArray(".horizontal__item");
+
+      gsap.to(box_items, {
+        xPercent: -100 * (box_items.length - 1),
+        ease: "sine.out",
+        scrollTrigger: {
+          trigger: section_2,
+          pin: true,
+          scrub: 3,
+          snap: 1 / (box_items.length - 1),
+          end: "+=" + section_2.offsetWidth,
+        },
+      });
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
